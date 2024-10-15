@@ -1,0 +1,79 @@
+Aluno: Adelino Martins de Lima Neto
+
+# Referências:
+
+    Requisitos: https://github.com/adelino-dev/miniprojeto1-filas/blob/main/requisitos_atividade.pdf
+    Testes: https://github.com/ricardo9n/estd/blob/main/mp-testes/set_with_queue___tests.py
+    FilaArray: https://github.com/ricardo9n/estd/blob/main/filas/fila_array.py
+    
+# Comentários:
+
+    ## Dificuldades
+    
+      A implementação desta atividade foi tranquila, sem grandes obstáculos. A única dificuldade
+    que encontrei ocorreu durante o teste "test_remove_non_existing_element", em que o programa 
+    não estava capturando a exceção "ValueError. Enfrentei algumas dificuldades para resolver 
+    esse problema, até perceber que estava chamando um tipo diferente de exceção no  SetWithQueue,
+    em vez de "ValueError". Assim que identifiquei o erro, corrigi rapidamente, 
+    e o impasse foi imediatamente resolvido.
+
+    ## Discutindo o desemepenho
+
+      Ao implementar o método "remove" em SetWithQueue, inicialmente pensei em usar o 
+    método "contains" para verificar se o elemento estava presente na fila. No entanto,
+    isso duplicaria o desempenho para O(2n) no pior caso. Por essa razão, optei por 
+    realizar a verificação diretamente dentro do laço que busca o elemento a ser removido.
+
+      Uma melhoria de desempenho que poderia ser implementada diz respeito ao método "list".
+    Da forma como o implementei, um laço for percorre a fila e armazena os elementos em uma 
+    lista, o que resulta em um desempenho O(n) no pior caso. Esse custo poderia ser reduzido 
+    a O(1) se houvesse uma lista predefinida na inicialização do SetWithQueue, que contivesse
+    todos os elementos da fila e fosse manipulada juntamente com ela nos métodos "add" e 
+    "remove". Outra alternativa seria um método em FilaArray que retornasse diretamente o 
+    atributo "_dados". Não implementei dessa forma, pois me pareceu fugir do objetivo da 
+    atividade. Se uma lista predefinida fosse usada, não haveria necessidade de manipular a fila
+    em nenhuma parte do código, já que a própria lista atenderia todos os requisitos dos métodos.
+
+      Além disso, enquanto programava, considerei se era necessário manter os elementos na mesma 
+    ordem em que foram adicionados após a execução dos métodos "remove" e "contains". Caso não fosse, 
+    o desempenho poderia ser melhorado, já que os métodos poderiam interromper a busca assim que 
+    encontrassem o elemento na fila. No entanto, ao revisar os casos de teste, optei por manter sempre 
+    a ordem original. Por esse motivo, os métodos "remove" e "contains" mantêm um desempenho O(n).
+
+    Segue abaixo o desempenho de cada método de SetWithQueue para o pior caso:
+
+    * add --> O(n)
+
+          O método "add" verifica se o elemento já está presente na 
+        fila chamando o método contains, que percorre todos os elementos 
+        da fila (O(n)). Se o elemento não existir, ele é adicionado à 
+        fila em tempo constante (O(1)). Portanto, o desempenho total 
+        do método "add" é O(n).
+
+    * remove --> O(n)
+
+          O método "remove" percorre todos os elementos da fila para 
+        encontrar e remover o elemento especificado, reposicionando os 
+        demais de volta na fila. No pior caso, isso exige verificar todos
+        os elementos, resultando em um desempenho de O(n).
+
+
+    * contains --> O(n)
+
+          O método "contains" também percorre todos os elementos da fila 
+        para verificar a presença do elemento, removendo e adicionando cada ,
+        um de volta à fila. Essa operação é linear em relação ao número de 
+        elementos, resultando em um desempenho de O(n).
+
+    * size --> O(1)
+
+          O método "size" retorna o comprimento da fila, o que é uma operação 
+        constante, pois não envolve iteração. Assim, o desempenho total do 
+        método "size" é O(1).
+
+    * list --> O(n)
+
+          O método "list" itera por todos os elementos da fila para coletá-los
+        em uma lista e, em seguida, adiciona cada um de volta à fila. Essa 
+        operação também é linear, resultando em um desempenho de O(n).
+      
