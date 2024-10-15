@@ -1,3 +1,12 @@
+# Baseado em código do livro:
+#
+#    Data Structures and Algorithms in Python
+#    Michael T. Goodrich, Roberto Tamassia, and Michael H. Gdados_antigoswasser
+#    John Wiley & Sons, 2013
+#
+# License <http://www.gnu.org/licenses/>.
+
+
 class FilaVazia(Exception):
     pass
 
