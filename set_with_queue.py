@@ -12,10 +12,10 @@ class SetWithQueue:
         contains_element = False
         for i in range(self.size()):
             e = self._fila_array.dequeue()
-            if e == element:
-                contains_element = True
-            else:
+            if e != element:
                 self._fila_array.enqueue(e)
+            else:
+                contains_element = True
 
         if not(contains_element):
             raise ValueError('Element not found')
